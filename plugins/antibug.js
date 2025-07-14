@@ -1,1 +1,61 @@
-const _0x21bd35=_0x410f;(function(_0x8d0258,_0x5bab3d){const _0x5b3cf9=_0x410f,_0x16a1c3=_0x8d0258();while(!![]){try{const _0x2e2122=-parseInt(_0x5b3cf9(0xd6))/0x1+parseInt(_0x5b3cf9(0xfd))/0x2*(parseInt(_0x5b3cf9(0xfc))/0x3)+-parseInt(_0x5b3cf9(0xdc))/0x4*(parseInt(_0x5b3cf9(0xf6))/0x5)+-parseInt(_0x5b3cf9(0xd3))/0x6+-parseInt(_0x5b3cf9(0xd7))/0x7+parseInt(_0x5b3cf9(0xdb))/0x8+parseInt(_0x5b3cf9(0xf7))/0x9;if(_0x2e2122===_0x5bab3d)break;else _0x16a1c3['push'](_0x16a1c3['shift']());}catch(_0x5afaaf){_0x16a1c3['push'](_0x16a1c3['shift']());}}}(_0x15e9,0xc4730));const {cmd}=require(_0x21bd35(0xdd)),fs=require('fs'),path=require(_0x21bd35(0xcd)),dbPath=path[_0x21bd35(0xe7)](__dirname,_0x21bd35(0xf9));function _0x15e9(){const _0x583fbc=['ON\x20✅','string','kcziW','DlBdm','resolve','✅\x20*AntiBug\x20Active!*\x0aUnicode\x20sispèk\x20ap\x20efase\x20+\x20sanksyon.','Error\x20saving\x20antibug.json:','toLowerCase','Aktive\x20/\x20Dezaktive\x20AntiBug\x20global','Failed\x20to\x20block\x20user:','OrcYy','🛡️\x20*AntiBug\x20Status:*\x20','sendMessage','groupParticipantsUpdate','existsSync','🚫\x20*AntiBug\x20Dezaktive.*','test','OFF\x20❌','error','35LTnwFl','14333931sUTHoM','Failed\x20to\x20delete\x20bug\x20message:','../data/antibug.json','stringify','HZQpa','3RLGzkj','2981990YapgiD','writeFileSync','utf-8','updateBlockStatus','remove','enabled','spam','pultT','readFileSync','chat','path','sender','rzDkJ','body','XAlzy','LAGfc','9036162UZRpli','antibug\x20?(.*)','dyexr','102873LQFQDo','11238360cQNWtt','parse','DTyVI','Failed\x20to\x20remove\x20user:','9474024SWfUhX','142212kQUEIi','../command','off','key','OEtjS','PULET','🛡️'];_0x15e9=function(){return _0x583fbc;};return _0x15e9();}let antiBugOn=![];try{if(fs[_0x21bd35(0xf1)](dbPath)){const data=JSON[_0x21bd35(0xd8)](fs[_0x21bd35(0xcb)](dbPath,_0x21bd35(0xff)));antiBugOn=data[_0x21bd35(0xc8)]===!![];}}catch(_0x110624){console[_0x21bd35(0xf5)]('Error\x20reading\x20antibug.json:',_0x110624),antiBugOn=![];}function _0x410f(_0x3e07d5,_0x53f1c6){const _0x15e95d=_0x15e9();return _0x410f=function(_0x410fbd,_0xdb98fa){_0x410fbd=_0x410fbd-0xc8;let _0x618d94=_0x15e95d[_0x410fbd];return _0x618d94;},_0x410f(_0x3e07d5,_0x53f1c6);}function saveAntiBugState(_0x493243){const _0x54dc5f=_0x21bd35,_0x312d05={'DlBdm':_0x54dc5f(0xe9)};try{fs[_0x54dc5f(0xfe)](dbPath,JSON[_0x54dc5f(0xfa)]({'enabled':_0x493243},null,0x2)),antiBugOn=_0x493243;}catch(_0x162783){console[_0x54dc5f(0xf5)](_0x312d05[_0x54dc5f(0xe6)],_0x162783);}}const isBugUnicode=_0x14d65a=>/[\u200B-\u200F\u061C\u180E\u2060-\u206F]/[_0x21bd35(0xf3)](_0x14d65a);cmd({'pattern':_0x21bd35(0xd4),'desc':_0x21bd35(0xeb),'category':_0x21bd35(0xc9),'react':_0x21bd35(0xe2),'filename':__filename},async(_0x3a8a07,_0x3728f0,{arg:_0x4518fe,reply:_0x384eb2})=>{const _0x2d53a2=_0x21bd35,_0x3797ff={'OrcYy':function(_0x230c09,_0x39e5d7){return _0x230c09||_0x39e5d7;},'XAlzy':function(_0x59cf39,_0x3c6166){return _0x59cf39===_0x3c6166;},'DTyVI':function(_0x7b96a9,_0x1c356f){return _0x7b96a9(_0x1c356f);},'rWVWI':_0x2d53a2(0xe8),'PULET':function(_0x2bf516,_0x14d178){return _0x2bf516===_0x14d178;},'kcziW':_0x2d53a2(0xde),'gAbSZ':function(_0x32f6c5,_0x23bde0){return _0x32f6c5(_0x23bde0);},'rzDkJ':_0x2d53a2(0xf2),'OEtjS':_0x2d53a2(0xf4)},_0xacde74=_0x3797ff[_0x2d53a2(0xed)](_0x4518fe,'')[_0x2d53a2(0xea)]();if(_0x3797ff[_0x2d53a2(0xd1)](_0xacde74,'on'))return saveAntiBugState(!![]),await _0x3797ff[_0x2d53a2(0xd9)](_0x384eb2,_0x3797ff['rWVWI']);else return _0x3797ff[_0x2d53a2(0xe1)](_0xacde74,_0x3797ff[_0x2d53a2(0xe5)])?(_0x3797ff[_0x2d53a2(0xd9)](saveAntiBugState,![]),await _0x3797ff['gAbSZ'](_0x384eb2,_0x3797ff[_0x2d53a2(0xcf)])):await _0x3797ff[_0x2d53a2(0xd9)](_0x384eb2,_0x2d53a2(0xee)+(antiBugOn?_0x2d53a2(0xe3):_0x3797ff[_0x2d53a2(0xe0)])+'\x0a\x0aItilize:\x0a*.antibug\x20on*\x0a*.antibug\x20off*');}),cmd({'pattern':'.*','fromMe':![],'dontAddCommandList':!![],'filename':__filename},async(_0x426b45,_0xb99c07,{next:_0x3f4489})=>{const _0x3568ff=_0x21bd35,_0x46620d={'dyexr':function(_0xb2d2e3){return _0xb2d2e3();},'Liwsc':function(_0x1c3379){return _0x1c3379();},'LAGfc':function(_0x309664,_0x40bcd3){return _0x309664(_0x40bcd3);},'xMqLv':_0x3568ff(0x101),'HZQpa':_0x3568ff(0xda),'DoAsJ':'🚫\x20*Unicode\x20Bug\x20Blocked!*\x0aUser\x20couldn\x27t\x20be\x20kicked\x20(maybe\x20admin).','iBplH':'block','nqfnt':'🚫\x20*Unicode\x20Bug\x20Blocked!*\x0aOu\x20te\x20bloke\x20pou\x20karaktè\x20sispèk.','pultT':_0x3568ff(0xec)};if(!antiBugOn)return await _0x46620d[_0x3568ff(0xd5)](_0x3f4489);if(!_0xb99c07['body']||typeof _0xb99c07[_0x3568ff(0xd0)]!==_0x3568ff(0xe4))return await _0x46620d['Liwsc'](_0x3f4489);if(_0x46620d[_0x3568ff(0xd2)](isBugUnicode,_0xb99c07[_0x3568ff(0xd0)])){try{await _0x426b45['sendMessage'](_0xb99c07[_0x3568ff(0xcc)],{'delete':_0xb99c07[_0x3568ff(0xdf)]});}catch(_0x29df03){console['error'](_0x3568ff(0xf8),_0x29df03);}if(_0xb99c07['isGroup'])try{await _0x426b45[_0x3568ff(0xf0)](_0xb99c07[_0x3568ff(0xcc)],[_0xb99c07[_0x3568ff(0xce)]],_0x46620d['xMqLv']);}catch(_0x581979){console[_0x3568ff(0xf5)](_0x46620d[_0x3568ff(0xfb)],_0x581979),await _0x426b45[_0x3568ff(0xef)](_0xb99c07['chat'],{'text':_0x46620d['DoAsJ'],'quoted':_0xb99c07});}else try{await _0x426b45[_0x3568ff(0x100)](_0xb99c07[_0x3568ff(0xce)],_0x46620d['iBplH']),await _0x426b45['sendMessage'](_0xb99c07[_0x3568ff(0xcc)],{'text':_0x46620d['nqfnt'],'quoted':_0xb99c07});}catch(_0x4672e4){console[_0x3568ff(0xf5)](_0x46620d[_0x3568ff(0xca)],_0x4672e4);}return;}return await _0x46620d[_0x3568ff(0xd5)](_0x3f4489);});
+const { cmd } = require('../command'); // adapte selon estrikti ou
+
+// Yon flag global pou kontwole si antibug aktif oswa pa
+let antibugActive = false;
+
+// Kòmand pou aktive/dezaktyve antibug
+cmd({
+  pattern: 'antibug',
+  desc: 'Activate or deactivate antibug protection',
+  category: 'main',
+  react: '🛡️',
+  filename: __filename
+}, async (bot, mek) => {
+  antibugActive = !antibugActive;
+  let msg = antibugActive ? '🛡️ Antibug activated! Harmful messages will be deleted.' : '🛡️ Antibug deactivated.';
+  await bot.sendMessage(mek.chat, msg, { quoted: mek });
+});
+
+
+// Fonksyon pou verifye chak mesaj ki rantre
+async function handleIncomingMessage(bot, mek) {
+  if (!antibugActive) return;
+
+  try {
+    // Ranmase tèks mesaj la (kèlkeswa tip li)
+    let messageText = '';
+    if (mek.message.conversation) messageText = mek.message.conversation;
+    else if (mek.message.extendedTextMessage) messageText = mek.message.extendedTextMessage.text;
+    else if (mek.message.imageMessage && mek.message.imageMessage.caption) messageText = mek.message.imageMessage.caption;
+    else if (mek.message.videoMessage && mek.message.videoMessage.caption) messageText = mek.message.videoMessage.caption;
+
+    if (!messageText) return; // Si pa gen tèks, pa fè anyen
+
+    // Regex karaktè lou, Unicode espesyal ki souvan lakòz freeze
+    const heavyUnicode = /[\u2000-\u2FFF\u3000-\uFFFF]/g;
+
+    // Deteksyon mesaj danjere
+    const tooLong = messageText.length > 1000; // mesaj ki twò long
+    const manyHeavyChars = (messageText.match(heavyUnicode) || []).length > 50; // twòp karaktè lou
+
+    if (tooLong || manyHeavyChars) {
+      // Efase mesaj la (bot dwe admin nan gwoup la)
+      await bot.deleteMessage(mek.chat, { id: mek.key.id, remoteJid: mek.chat });
+
+      // Optional: blòke moun ki voye mesaj la (dekomante si ou vle)
+      // await bot.updateBlockStatus(mek.sender, 'block');
+
+      // Avètisman nan chat la
+      await bot.sendMessage(mek.chat, `⚠️ Mesaj sa a te bloke paske li gen karaktè ki ka fè WhatsApp fèkse.`, { quoted: mek });
+
+      console.log(`Antibug: deleted harmful message from ${mek.sender} in ${mek.chat}`);
+    }
+  } catch (e) {
+    console.error('Antibug error:', e);
+  }
+}
+
+
+module.exports = {
+  handleIncomingMessage,
+};

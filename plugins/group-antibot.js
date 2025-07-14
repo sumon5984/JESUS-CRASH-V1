@@ -4,7 +4,7 @@ const config = require('../config');
 const antibotDB = new Map();
 
 cmd({
-  pattern: ".*",
+  pattern: "antibot",
   desc: "Antibot system that auto-detects and removes users using bot commands",
   category: "group",
   use: "antibot on / antibot off",

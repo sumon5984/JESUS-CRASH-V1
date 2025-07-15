@@ -1,7 +1,20 @@
-FROM node:lts-buster
-RUN git clone https://github.com/dawens8/JESUS-CRASH-V1/root/dawens8
-WORKDIR /root/dawens8
-RUN npm install && npm install -g pm2 || yarn install --network-concurrency 1
+# Use Node.js 20 base image
+FROM node:latest 
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the project files
 COPY . .
-EXPOSE 9090
+
+# Expose app port (optional; adjust as needed)
+EXPOSE 3000
+
+# Start the app (adjust the command as per your app)
 CMD ["npm", "start"]

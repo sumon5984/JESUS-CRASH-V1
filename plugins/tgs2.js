@@ -1,93 +1,101 @@
 // Plugin tgs2.js — Convert Telegram animated stickers to 
 const axios = require('axios');
-const sharp = require('sharp');
+const sharp = require('sharp'); // ajoute sharp pou resize imaj
 const { Sticker, StickerTypes } = require('wa-sticker-formatter');
-const { cmd } = require('../command');
+const config = require('../config');
+const { cmd, commands } = require('../command');
 
 cmd({
-  pattern: 'tgs2',
+  pattern: 'tg',
   alias: ['tgsticker', 'telegramsticker'],
   react: '🎴',
-  desc: 'Download Telegram sticker pack and convert to WhatsApp',
+  desc: 'Download and convert Telegram sticker packs to WhatsApp stickers',
   category: 'spam',
   filename: __filename
-}, async (conn, mek, m, { from, reply, args, pushname }) => {
+}, async (conn, mek, m, { from, reply, args, sender, pushname }) => {
   try {
-    /*─────────────────── VALIDATION ───────────────────*/
-    if (!args[0])
-      return reply('*Please provide a Telegram sticker-pack link.*\nExample:\n.tgs https://t.me/addstickers/meme');
+    if (!args[0]) {
+      reply('*Please provide a Telegram sticker pack link.*\n\nExample:\n.tgs https://t.me/addstickers/telegram');
+      return;
+    }
 
-    const url = args.join(' ');
-    const name = url.split('/addstickers/')[1];
-    if (!name) return reply('❌ Invalid Telegram sticker link.');
+    const lien = args.join(' ');
+    const name = lien.split('/addstickers/')[1];
 
-    /*─────────────────── TELEGRAM API ───────────────────*/
-    const botToken = process.env.TELEGRAM_TOKEN || '7627651583:AAHvQNSSwGEZEfQkjyAV5alG8pigXQY0948';
-    const setInfo = await axios.get(
-      `https://api.telegram.org/bot${botToken}/getStickerSet`,
-      { params: { name } }
-    );
+    if (!name) {
+      reply('Invalid Telegram sticker link.');
+      return;
+    }
 
-    const set = setInfo.data.result;
+    const api = `https://api.telegram.org/bot7025486524:AAGNJ3lMa8610p7OAIycwLtNmF9vG8GfboM/getStickerSet?name=${encodeURIComponent(name)}`;
 
-    /* blok animated */
-    if (set.is_animated || set.is_video)
-      return reply('⚠️ Animated / video Telegram stickers (.tgs/.webm) are not supported.');
+    const stickers = await axios.get(api);
 
-    const header =
-      `*TELEGRAM STICKER*\n` +
-      `• *Pack:* ${set.title}\n` +
-      `• *Stickers:* ${set.stickers.length}\n\n` +
-      `⬇️ Converting…`;
+    let type = stickers.data.result.is_animated ? 'animated sticker' : 'not animated sticker';
+
+    let message = `*TELEGRAM STICKER*\n\n` +
+                  `*Producer:* ${stickers.data.result.name}\n` +
+                  `*Type:* ${type}\n` +
+                  `*Length:* ${stickers.data.result.stickers.length}\n\n` +
+                  `> Please wait...`;
 
     await conn.sendMessage(
       from,
-      { image: { url: 'https://files.catbox.moe/06cgye.jpg' }, caption: header },
+      {
+        image: { url: 'https://files.catbox.moe/06cgye.jpg' },
+        caption: message,
+      },
       { quoted: mek }
     );
 
-    /*─────────────────── LOOP & CONVERT ───────────────────*/
-    for (const tgSticker of set.stickers) {
-      // get file path
-      const file = await axios.get(
-        `https://api.telegram.org/bot${botToken}/getFile`,
-        { params: { file_id: tgSticker.file_id } }
-      );
+    for (let i = 0; i < stickers.data.result.stickers.length; i++) {
+      try {
+        // Get file path from Telegram
+        const file = await axios.get(`https://api.telegram.org/bot7025486524:AAGNJ3lMa8610p7OAIycwLtNmF9vG8GfboM/getFile?file_id=${stickers.data.result.stickers[i].file_id}`);
 
-      // download original PNG web file
-      const imgBuf = (
-        await axios.get(
-          `https://api.telegram.org/file/bot${botToken}/${file.data.result.file_path}`,
-          { responseType: 'arraybuffer' }
-        )
-      ).data;
+        // Download sticker image as buffer
+        const response = await axios({
+          method: 'get',
+          url: `https://api.telegram.org/file/bot7025486524:AAGNJ3lMa8610p7OAIycwLtNmF9vG8GfboM/${file.data.result.file_path}`,
+          responseType: 'arraybuffer',
+        });
 
-      /* resize & compress */
-      const resized = await sharp(imgBuf)
-        .resize({ width: 512, height: 512, fit: 'inside' })
-        .webp({ quality: 60 })          // adjust quality ↓ if still too big
-        .toBuffer();
+        // Resize & compress image to max 512x512 with sharp
+        const resizedBuffer = await sharp(response.data)
+          .resize(512, 512, { fit: 'inside', withoutEnlargement: true })
+          .webp({ quality: 50 })
+          .toBuffer();
 
-      /* build WhatsApp sticker */
-      const waSticker = new Sticker(resized, {
-        pack: '𝐒𝐇𝐎𝐓𝐓𝐀𓅓𝐆𝐎𝐃𒋲𝐒𝐓𝐈𝐋𝐄𝐒𒋲𝗩𝗢𝗜𝗗 —͟͟͞͞𖣘 𒋲𝐃𝐀𝐖𝐄𝐍𝐒ᵈᵉᵐᵒⁿˢ𒋲 𓄂𓆩 𝟏𝟖𝟎𝟗 𓆪',
-        author: pushname || '𝐏𝐫𝐞́𝐬𝐞𝐧𝐜𝐞 𝐪𝐮𝐢 𝐧𝐞 𝐬’𝐚𝐧𝐧𝐨𝐧𝐜𝐞 𝐩𝐚𝐬, 𝐞𝐥𝐥𝐞 𝐬𝐞 𝐟𝐚𝐢𝐭 𝐬𝐞𝐧𝐭𝐢𝐫…',
-        type: StickerTypes.FULL,
-      });
+        // Create WhatsApp sticker from resized image
+        const sticker = new Sticker(resizedBuffer, {
+          pack: 'dawens boy',
+          author: pushname || 'unknown',
+          type: StickerTypes.FULL,
+          quality: 50,
+          background: '#000000',
+        });
 
-      await conn.sendMessage(
-        from,
-        { sticker: await waSticker.toBuffer() },
-        { quoted: mek }
-      );
+        const stickerBuffer = await sticker.toBuffer();
 
-      await new Promise(r => setTimeout(r, 1000)); // anti-spam delay
+        // Send sticker message
+        await conn.sendMessage(
+          from,
+          { sticker: stickerBuffer },
+          { quoted: mek }
+        );
+
+        // Delay 1 second between stickers to avoid rate limits
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      } catch (innerErr) {
+        console.error('Error with sticker #' + (i+1), innerErr);
+        // Continue next sticker even if one fails
+      }
     }
 
-    reply('✅ Done! Sticker pack sent.');
+    reply('✅ Sticker pack download complete!');
 
-  } catch (err) {
-    console.error('TGS ERROR:', err);
-    reply('❌ Error converting the sticker pack. Try again or choose a smaller pack.');
+  } catch (error) {
+    console.error('Error processing Telegram sticker pack:', error);
+    reply('❌ An error occurred while processing the sticker pack. Please try again.');
   }
 });

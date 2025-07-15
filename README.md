@@ -113,12 +113,6 @@ Start by forking this repository to your own GitHub account. Click the button be
 
 You will need a session ID to run the JESUS-CRASH-V1. Click the button below to obtain your session ID.if any error in loading site try vpn:
 
-> **3️⃣Pair Code (Session ID)**
-
-<a href='https://sessions-jesus-crash-l50y.onrender.com' target="_blank">
-  <img alt='Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-green?style=for-the-badge&logo=opencv&logoColor=black'/>
-</a>
-<br> 
 
 > **1️⃣Pair Code (Session ID)**
 

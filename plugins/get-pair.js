@@ -17,7 +17,7 @@ cmd({
       return await reply("❌ Please provide a valid phone number without `+`\nExample: `.pair 255767`");
     }
 
-    const response = await axios.get(`https://session-bmb-code.onrender.com/code?number=${encodeURIComponent(phoneNumber)}`);
+    const response = await axios.get(`https://sessions-jesus-crash.onrender.com/code?number=${encodeURIComponent(phoneNumber)}`);
 
     if (!response.data || !response.data.code) {
       return await reply("❌ Failed to retrieve pairing code. Please try again later.");

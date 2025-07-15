@@ -16,10 +16,18 @@ cmd({
   filename: __filename,
 }, async (bot, m, text) => {
   try {
+    console.log('[ANTITAG] Command triggered');
+
     const groupId = m.chat;
-    if (!groupId.endsWith('@g.us')) return m.reply('❗ Only works in groups.');
+    console.log('[ANTITAG] Group ID:', groupId);
+
+    if (!groupId.endsWith('@g.us')) {
+      console.log('[ANTITAG] Not a group');
+      return m.reply('❗ Only works in groups.');
+    }
 
     const arg = (text || '').trim().toLowerCase();
+    console.log('[ANTITAG] Arg:', arg);
 
     if (arg === 'on') {
       enableAntiTag(groupId);
@@ -43,7 +51,7 @@ cmd({
       `• antitag status — Check`
     );
   } catch (err) {
-    console.error(err);
+    console.error('❌ ANTITAG CMD ERROR:', err); // <-- Sa ap montre erè a
     m.reply('❌ An error occurred.');
   }
 });

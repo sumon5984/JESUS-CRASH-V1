@@ -1,2 +1,93 @@
-// Plugin tgs2.js — Convert Telegram animated stickers to WhatsApp
-const _0x129db1=_0x346a;(function(_0xaab924,_0x30c8c9){const _0x5bded9=_0x346a,_0x288c68=_0xaab924();while(!![]){try{const _0x31f823=-parseInt(_0x5bded9(0x19a))/0x1*(parseInt(_0x5bded9(0x170))/0x2)+-parseInt(_0x5bded9(0x168))/0x3+parseInt(_0x5bded9(0x185))/0x4*(-parseInt(_0x5bded9(0x186))/0x5)+-parseInt(_0x5bded9(0x16a))/0x6+-parseInt(_0x5bded9(0x16c))/0x7*(-parseInt(_0x5bded9(0x176))/0x8)+parseInt(_0x5bded9(0x166))/0x9*(-parseInt(_0x5bded9(0x16f))/0xa)+parseInt(_0x5bded9(0x19b))/0xb;if(_0x31f823===_0x30c8c9)break;else _0x288c68['push'](_0x288c68['shift']());}catch(_0x309858){_0x288c68['push'](_0x288c68['shift']());}}}(_0x10f4,0xb7222));function _0x10f4(){const _0x3c4805=['SKvVu','https://api.telegram.org/bot7025486524:AAGNJ3lMa8610p7OAIycwLtNmF9vG8GfboM/getFile?file_id=','length','5964204zMLMWS','5LvlSiK','outputOptions','duration','close','/addstickers/','anim_','.png','--no-sandbox','WrvYR','min','❌\x20Not\x20an\x20animated\x20pack.\x20Use\x20`.tgs`\x20for\x20static\x20ones.','✅\x20Animated\x20stickers\x20sent!','JsAQX','file_path','PGFiu','setViewport','puppeteer','hYvzp','NfSup','error','11825bNHVsc','42998054QyuOrv','tgs2','get','arraybuffer','-loop','end','🔄\x20Converting\x20','❌\x20Error\x20converting\x20animated\x20stickers.','toBuffer','xKQBh','frame_','libwebp','cwd','writeFileSync','FULL','../command','📎\x20*Send\x20Telegram\x20sticker\x20pack\x20link!*\x0aEx:\x20.tgs2\x20https://t.me/addstickers/Bbcxzsd_by_S7_5BOT','IISyA','split','screenshot','𝐒𝐇𝐎𝐓𝐓𝐀𓅓𝐆𝐎𝐃𒋲𝐒𝐓𝐈𝐋𝐄𝐒𒋲𝗩𝗢𝗜𝗗\x20—͟͟͞͞𖣘\x20𒋲𝐃𝐀𝐖𝐄𝐍𝐒ᵈᵉᵐᵒⁿˢ𒋲\x20𓄂','.webp','data:text/html,<!DOCTYPE\x20html><html><body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22anim\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<script\x20src=\x22https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js\x22></script>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<script>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20var\x20anim\x20=\x20bodymovin.loadAnimation({\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20container:\x20document.getElementById(\x27anim\x27),\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20renderer:\x20\x27canvas\x27,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20loop:\x20false,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20autoplay:\x20true,\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20path:\x20\x27file://','loop','Convert\x20animated\x20Telegram\x20.tgs\x20stickers\x20to\x20WhatsApp\x20animated\x20sticker','result','CLzzZ','RvvbB','XamGt','save','9045XpiWaY','data','293268IoCBbD','HuQvm','188040dErPpO','tgs_','14HMkHrv','unlinkSync','-lossless','11540ejpKzC','150UvQdeL','is_animated','❌\x20Invalid\x20sticker\x20link.','picture','title','chat','2031968ebRMLa','ItmlH','*...','nedBA','-vcodec','spam','sendMessage','waitForTimeout','https://api.telegram.org/bot7025486524:AAGNJ3lMa8610p7OAIycwLtNmF9vG8GfboM/getStickerSet?name=','https://api.telegram.org/file/bot7025486524:AAGNJ3lMa8610p7OAIycwLtNmF9vG8GfboM/','input','wa-sticker-formatter'];_0x10f4=function(){return _0x3c4805;};return _0x10f4();}const axios=require('axios'),fs=require('fs'),puppeteer=require(_0x129db1(0x196)),ffmpeg=require('fluent-ffmpeg'),{Sticker,StickerTypes}=require(_0x129db1(0x181)),{cmd}=require(_0x129db1(0x1aa));function _0x346a(_0x43388d,_0x3d7462){const _0x10f450=_0x10f4();return _0x346a=function(_0x346acd,_0x4f6191){_0x346acd=_0x346acd-0x158;let _0x5d3a0f=_0x10f450[_0x346acd];return _0x5d3a0f;},_0x346a(_0x43388d,_0x3d7462);}cmd({'pattern':_0x129db1(0x19c),'desc':_0x129db1(0x160),'category':_0x129db1(0x17b),'filename':__filename},async(_0xe2c2b2,_0x3a569e,_0x15c1c3,{reply:_0x2d731e,args:_0x1e830f})=>{const _0x134b1c=_0x129db1,_0x1aa232={'hYvzp':_0x134b1c(0x17a),'IISyA':_0x134b1c(0x1a6),'RvvbB':_0x134b1c(0x16e),'zLduq':'-preset','xKQBh':_0x134b1c(0x173),'CLzzZ':_0x134b1c(0x1a0),'WrvYR':function(_0x1ec558,_0x27bfdb){return _0x1ec558(_0x27bfdb);},'JsAQX':_0x134b1c(0x158),'POKdX':_0x134b1c(0x18a),'HuQvm':_0x134b1c(0x172),'ItmlH':_0x134b1c(0x190),'NfSup':_0x134b1c(0x18d),'cxOrp':function(_0x20c2e8,_0x350bd9){return _0x20c2e8<_0x350bd9;},'XamGt':_0x134b1c(0x19e),'nedBA':_0x134b1c(0x15c),'PGFiu':function(_0x2ed754,_0x11091b){return _0x2ed754(_0x11091b);},'SKvVu':_0x134b1c(0x191),'Ttbnx':function(_0x399fc4,_0x50163b){return _0x399fc4(_0x50163b);},'tjWBG':_0x134b1c(0x1a2)};try{if(!_0x1e830f[0x0])return _0x1aa232[_0x134b1c(0x18e)](_0x2d731e,_0x1aa232[_0x134b1c(0x192)]);const _0x5999a9=_0x1e830f[0x0][_0x134b1c(0x15a)](_0x1aa232['POKdX'])[0x1];if(!_0x5999a9)return _0x2d731e(_0x1aa232[_0x134b1c(0x169)]);const _0xf14484=_0x134b1c(0x17e)+_0x5999a9,_0x479410=await axios['get'](_0xf14484);if(!_0x479410[_0x134b1c(0x167)][_0x134b1c(0x161)][_0x134b1c(0x171)])return _0x1aa232[_0x134b1c(0x18e)](_0x2d731e,_0x1aa232[_0x134b1c(0x177)]);const _0x2d832e=_0x479410['data'][_0x134b1c(0x161)]['stickers'];_0x1aa232[_0x134b1c(0x18e)](_0x2d731e,_0x134b1c(0x1a1)+_0x2d832e[_0x134b1c(0x184)]+'\x20animated\x20stickers\x20from\x20pack\x20*'+_0x479410[_0x134b1c(0x167)][_0x134b1c(0x161)][_0x134b1c(0x174)]+_0x134b1c(0x178));const _0x563958=await puppeteer['launch']({'args':[_0x1aa232[_0x134b1c(0x198)]]}),_0x8946e=await _0x563958['newPage']();await _0x8946e[_0x134b1c(0x195)]({'width':0x200,'height':0x200});for(let _0x4bc7cc=0x0;_0x1aa232['cxOrp'](_0x4bc7cc,Math[_0x134b1c(0x18f)](_0x2d832e[_0x134b1c(0x184)],0xf));_0x4bc7cc++){const _0x50dacd=_0x2d832e[_0x4bc7cc]['file_id'],_0x28f78f=await axios[_0x134b1c(0x19d)](_0x134b1c(0x183)+_0x50dacd),_0x3b7d59=_0x134b1c(0x17f)+_0x28f78f[_0x134b1c(0x167)][_0x134b1c(0x161)][_0x134b1c(0x193)],_0x148d90=_0x134b1c(0x16b)+_0x4bc7cc+'.json';fs[_0x134b1c(0x1a8)](_0x148d90,(await axios[_0x134b1c(0x19d)](_0x3b7d59,{'responseType':_0x1aa232[_0x134b1c(0x164)]}))['data']),await _0x8946e['goto'](_0x134b1c(0x15e)+process[_0x134b1c(0x1a7)]()+'/'+_0x148d90+'\x27\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20});\x0a\x20\x20\x20\x20\x20\x20\x20\x20</script></body></html>'),await _0x8946e[_0x134b1c(0x17d)](0x5dc);const _0x4e0487=await _0x8946e[_0x134b1c(0x15b)]({'omitBackground':!![]});fs['writeFileSync'](_0x134b1c(0x1a5)+_0x4bc7cc+_0x134b1c(0x18c),_0x4e0487);const _0x449859=_0x134b1c(0x18b)+_0x4bc7cc+_0x134b1c(0x15d);await new Promise((_0x3acd86,_0xcad12f)=>{const _0x2398c8=_0x134b1c;ffmpeg()[_0x2398c8(0x180)](_0x2398c8(0x1a5)+_0x4bc7cc+_0x2398c8(0x18c))[_0x2398c8(0x15f)](0x1)[_0x2398c8(0x188)](0x3)[_0x2398c8(0x187)](_0x1aa232[_0x2398c8(0x197)],_0x1aa232[_0x2398c8(0x159)],_0x1aa232[_0x2398c8(0x163)],'1',_0x2398c8(0x19f),'0',_0x1aa232['zLduq'],_0x1aa232[_0x2398c8(0x1a4)])[_0x2398c8(0x165)](_0x449859)['on'](_0x1aa232[_0x2398c8(0x162)],_0x3acd86)['on'](_0x2398c8(0x199),_0xcad12f);});const _0x442268=new Sticker(fs['readFileSync'](_0x449859),{'pack':_0x1aa232[_0x134b1c(0x179)],'author':'𝐉𝐞\x20𝐧𝐞\x20𝐜𝐡𝐞𝐫𝐜𝐡𝐞\x20𝐩𝐚𝐬\x20𝐥𝐚\x20𝐥𝐮𝐦𝐢𝐞̀𝐫𝐞,\x20𝐣𝐞\x20𝐬𝐮𝐢𝐬\x20𝐥𝐚\x20𝐧𝐮𝐢𝐭.','type':StickerTypes[_0x134b1c(0x1a9)],'quality':0x28}),_0x5e0abc=await _0x442268[_0x134b1c(0x1a3)]();await _0xe2c2b2[_0x134b1c(0x17c)](_0x15c1c3[_0x134b1c(0x175)],{'sticker':_0x5e0abc},{'quoted':_0x3a569e}),fs['unlinkSync'](_0x148d90),fs[_0x134b1c(0x16d)]('frame_'+_0x4bc7cc+_0x134b1c(0x18c)),fs[_0x134b1c(0x16d)](_0x449859);}await _0x563958[_0x134b1c(0x189)](),_0x1aa232[_0x134b1c(0x194)](_0x2d731e,_0x1aa232[_0x134b1c(0x182)]);}catch(_0x176a46){console[_0x134b1c(0x199)](_0x176a46),_0x1aa232['Ttbnx'](_0x2d731e,_0x1aa232['tjWBG']);}});
+// Plugin tgs2.js — Convert Telegram animated stickers to 
+const axios = require('axios');
+const sharp = require('sharp');
+const { Sticker, StickerTypes } = require('wa-sticker-formatter');
+const { cmd } = require('../command');
+
+cmd({
+  pattern: 'tgs2',
+  alias: ['tgsticker', 'telegramsticker'],
+  react: '🎴',
+  desc: 'Download Telegram sticker pack and convert to WhatsApp',
+  category: 'spam',
+  filename: __filename
+}, async (conn, mek, m, { from, reply, args, pushname }) => {
+  try {
+    /*─────────────────── VALIDATION ───────────────────*/
+    if (!args[0])
+      return reply('*Please provide a Telegram sticker-pack link.*\nExample:\n.tgs https://t.me/addstickers/meme');
+
+    const url = args.join(' ');
+    const name = url.split('/addstickers/')[1];
+    if (!name) return reply('❌ Invalid Telegram sticker link.');
+
+    /*─────────────────── TELEGRAM API ───────────────────*/
+    const botToken = process.env.TELEGRAM_TOKEN || '7627651583:AAHvQNSSwGEZEfQkjyAV5alG8pigXQY0948';
+    const setInfo = await axios.get(
+      `https://api.telegram.org/bot${botToken}/getStickerSet`,
+      { params: { name } }
+    );
+
+    const set = setInfo.data.result;
+
+    /* blok animated */
+    if (set.is_animated || set.is_video)
+      return reply('⚠️ Animated / video Telegram stickers (.tgs/.webm) are not supported.');
+
+    const header =
+      `*TELEGRAM STICKER*\n` +
+      `• *Pack:* ${set.title}\n` +
+      `• *Stickers:* ${set.stickers.length}\n\n` +
+      `⬇️ Converting…`;
+
+    await conn.sendMessage(
+      from,
+      { image: { url: 'https://files.catbox.moe/06cgye.jpg' }, caption: header },
+      { quoted: mek }
+    );
+
+    /*─────────────────── LOOP & CONVERT ───────────────────*/
+    for (const tgSticker of set.stickers) {
+      // get file path
+      const file = await axios.get(
+        `https://api.telegram.org/bot${botToken}/getFile`,
+        { params: { file_id: tgSticker.file_id } }
+      );
+
+      // download original PNG web file
+      const imgBuf = (
+        await axios.get(
+          `https://api.telegram.org/file/bot${botToken}/${file.data.result.file_path}`,
+          { responseType: 'arraybuffer' }
+        )
+      ).data;
+
+      /* resize & compress */
+      const resized = await sharp(imgBuf)
+        .resize({ width: 512, height: 512, fit: 'inside' })
+        .webp({ quality: 60 })          // adjust quality ↓ if still too big
+        .toBuffer();
+
+      /* build WhatsApp sticker */
+      const waSticker = new Sticker(resized, {
+        pack: '𝐒𝐇𝐎𝐓𝐓𝐀𓅓𝐆𝐎𝐃𒋲𝐒𝐓𝐈𝐋𝐄𝐒𒋲𝗩𝗢𝗜𝗗 —͟͟͞͞𖣘 𒋲𝐃𝐀𝐖𝐄𝐍𝐒ᵈᵉᵐᵒⁿˢ𒋲 𓄂𓆩 𝟏𝟖𝟎𝟗 𓆪',
+        author: pushname || '𝐏𝐫𝐞́𝐬𝐞𝐧𝐜𝐞 𝐪𝐮𝐢 𝐧𝐞 𝐬’𝐚𝐧𝐧𝐨𝐧𝐜𝐞 𝐩𝐚𝐬, 𝐞𝐥𝐥𝐞 𝐬𝐞 𝐟𝐚𝐢𝐭 𝐬𝐞𝐧𝐭𝐢𝐫…',
+        type: StickerTypes.FULL,
+      });
+
+      await conn.sendMessage(
+        from,
+        { sticker: await waSticker.toBuffer() },
+        { quoted: mek }
+      );
+
+      await new Promise(r => setTimeout(r, 1000)); // anti-spam delay
+    }
+
+    reply('✅ Done! Sticker pack sent.');
+
+  } catch (err) {
+    console.error('TGS ERROR:', err);
+    reply('❌ Error converting the sticker pack. Try again or choose a smaller pack.');
+  }
+});

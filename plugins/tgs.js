@@ -70,7 +70,7 @@ await conn.sendMessage(
         type: StickerTypes.FULL,
         categories: ['🤩', '🎉'],
         id: '12345',
-        quality: 30,
+        quality: 100,
         background: '#000000'
       });
 

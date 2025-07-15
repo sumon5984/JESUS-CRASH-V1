@@ -68,7 +68,7 @@ cmd({
 
         // Create WhatsApp sticker from resized image
         const sticker = new Sticker(resizedBuffer, {
-          pack: 'dawens boy',
+          pack: '𝐆𝐎𝐃 𝐃𝐀𝐖𝐄𝐍𝐒',
           author: pushname || 'unknown',
           type: StickerTypes.FULL,
           quality: 50,

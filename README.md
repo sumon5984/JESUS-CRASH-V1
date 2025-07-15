@@ -121,13 +121,6 @@ You will need a session ID to run the JESUS-CRASH-V1. Click the button below to 
 </a>
 <br> 
 
-> **2️⃣Pair Code (Session ID)**
-
-<a href='https://sessions-jesus.onrender.com' target="_blank">
-  <img alt='Pairing Code' src='https://img.shields.io/badge/Get%20Pairing%20Code-orange?style=for-the-badge&logo=opencv&logoColor=black'/>
-</a>
-<br> 
-
 ---
 
 <h2 align="center">JESUS-CRASH-V1 Deployment Options</h2>
